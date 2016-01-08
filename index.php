@@ -1,16 +1,47 @@
 <?php
-$name = 'Joe';
-$what = 'CST student';
-$level = 4;
-echo 'Hi, my name is '.$name.' and I am a level '.$level.' '.$what.'.';
 
-$hoursworked = 10;
-$rate = 12;
-if ($hoursworked > 40) {
-	$total = $hoursworked * $rate * 1.5;
-} else {
-	$total = $hoursworked * $rate;
+$position = $_GET['board'];
+$squares = str_split($position);
+
+if (winner('x',$squares)) echo 'You (x) win.';
+else if (winner('o',$squares)) echo 'I (o) win.';
+else echo 'No winner yet.';
+
+function winner($token, $position) {
+	$won = false;
+	if (($position[0] == $token) &&
+		($position[1] == $token) &&
+		($position[2] == $token)) {
+		$won = true;
+	} else if (($position[3] == $token) &&
+		($position[4] == $token) &&
+		($position[5] == $token)) {
+		$won = true;
+	} else if (($position[6] == $token) &&
+		($position[7] == $token) &&
+		($position[8] == $token)) {
+		$won = true;
+	} else if (($position[0] == $token) &&
+		($position[3] == $token) &&
+		($position[6] == $token)) {
+		$won = true;
+	} else if (($position[1] == $token) &&
+		($position[4] == $token) &&
+		($position[7] == $token)) {
+		$won = true;
+	} else if (($position[2] == $token) &&
+		($position[5] == $token) &&
+		($position[8] == $token)) {
+		$won = true;
+	} else if (($position[0] == $token) &&
+		($position[4] == $token) &&
+		($position[8] == $token)) {
+		$won = true;
+	} else if (($position[2] == $token) &&
+		($position[4] == $token) &&
+		($position[6] == $token)) {
+		$won = true;
+	}
+	return $won;
 }
-echo "<br />";
-echo ($total > 0) ? 'You owe me '.$total : "You're welcome";
 ?>
