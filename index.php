@@ -7,41 +7,49 @@ if (winner('x',$squares)) echo 'You (x) win.';
 else if (winner('o',$squares)) echo 'I (o) win.';
 else echo 'No winner yet.';
 
+//Game Board (indices):
+// 0 1 2
+// 3 4 5
+// 6 7 8
 function winner($token, $position) {
-	$won = false;
-	if (($position[0] == $token) &&
-		($position[1] == $token) &&
-		($position[2] == $token)) {
-		$won = true;
-	} else if (($position[3] == $token) &&
-		($position[4] == $token) &&
-		($position[5] == $token)) {
-		$won = true;
-	} else if (($position[6] == $token) &&
-		($position[7] == $token) &&
-		($position[8] == $token)) {
-		$won = true;
-	} else if (($position[0] == $token) &&
-		($position[3] == $token) &&
-		($position[6] == $token)) {
-		$won = true;
-	} else if (($position[1] == $token) &&
-		($position[4] == $token) &&
-		($position[7] == $token)) {
-		$won = true;
-	} else if (($position[2] == $token) &&
-		($position[5] == $token) &&
-		($position[8] == $token)) {
-		$won = true;
-	} else if (($position[0] == $token) &&
-		($position[4] == $token) &&
-		($position[8] == $token)) {
-		$won = true;
-	} else if (($position[2] == $token) &&
-		($position[4] == $token) &&
-		($position[6] == $token)) {
-		$won = true;
+	$result = true;
+
+	//Check columns and rows
+	for($col=0; $col<3; $col++) {
+		//Check columns
+		$result = true;
+		for($row=0; $row<3; $row++) {
+			if ($position[3*$row+$col] != $token) {
+				$result = false;
+			}
+		}
+		if ($result == true) {
+			//echo "Victory on column $col. ";
+			break;
+		}
+		//Check rows
+		$result = true;
+		for($row=0; $row<3; $row++) {
+			if ($position[3*$col+$row] != $token) {
+				$result = false;
+			}
+		}
+		if ($result == true) {
+			//echo "Victory on row $col. "; //$col is intentional.
+			break;
+		}
 	}
-	return $won;
+	//Check Diagonals
+	if ($position[4] == $token) {
+		if ($position[0] == $token && $position[8] == $token) {
+			//echo "Victory on backslash. ";
+			$result = true;
+		} else if ($position[2] == $token && $position[6] == $token) {
+			//echo "Victory on forward slash. ";
+			$result = true;
+		}
+	}
+
+	return $result;
 }
 ?>
