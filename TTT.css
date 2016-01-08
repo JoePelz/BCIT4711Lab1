@@ -1,0 +1,42 @@
+body {
+	display: block;
+	background-color: #EEEEFF;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+h1, h3 {
+	width: 100%;
+	text-align: center;
+}
+
+td {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	text-align: center;
+	font-size: 200%;
+	font-weight: bold;
+}
+
+td.x {
+	background-color: #CFC;
+}
+
+td.o {
+	background-color: #FCC;
+}
+
+table {
+	margin: auto
+}
+
+td a {
+	text-decoration: none;
+	vertical-align: middle;
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: white;
+}
